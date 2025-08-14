@@ -1,11 +1,10 @@
-/* MPOB layout clone — focus on structure (flex/grid) and color palette */
 :root {
   --deep-green: #0d5f2e;
   --deep-green-2: #0b4f26;
   --emerald: #137a3c;
   --gold: #f2a900;
   --light-gold: #ffc34d;
-  --canvas: #075b2e; /* menu gradient base */
+  --canvas: #075b2e;
   --bg: #f3f3f3;
   --paper: #ffffff;
   --text: #1a1a1a;
