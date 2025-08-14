@@ -1,0 +1,294 @@
+/* MPOB layout clone — focus on structure (flex/grid) and color palette */
+:root {
+  --deep-green: #0d5f2e;
+  --deep-green-2: #0b4f26;
+  --emerald: #137a3c;
+  --gold: #f2a900;
+  --light-gold: #ffc34d;
+  --canvas: #075b2e; /* menu gradient base */
+  --bg: #f3f3f3;
+  --paper: #ffffff;
+  --text: #1a1a1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-rows: auto auto auto auto auto 1fr auto;
+  min-height: 100svh;
+}
+
+/* Brand strip */
+.brand-strip {
+  background: linear-gradient(#ffffff, #f6f6f6);
+  border-bottom: 1px solid #e2e2e2;
+}
+.brand-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mpob-mark {
+  width: 64px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--emerald), var(--deep-green));
+  border-radius: 6px;
+}
+.brand-text .sub {
+  font-size: 12px;
+  color: #6b7280;
+}
+.brand-text .title {
+  font-family: Nunito, Inter, sans-serif;
+  font-weight: 800;
+  color: #0b4f26;
+}
+.gov-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #fff 0,
+    #e5e7eb 55%,
+    #cbd5e1 100%
+  );
+  border: 1px solid #d1d5db;
+}
+
+/* Primary green menu */
+.primary-menu {
+  background: linear-gradient(180deg, var(--deep-green), var(--deep-green-2));
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 3px solid #0a3f1f;
+}
+.menu-grid {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 8px 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  list-style: none;
+}
+.menu-grid li {
+  display: contents;
+}
+.menu-grid a {
+  background: linear-gradient(180deg, #147a3c, #0f6a34);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+.menu-grid a:hover {
+  filter: brightness(1.05);
+}
+.menu-grid .ico {
+  filter: grayscale(100%) brightness(120%);
+  opacity: 0.85;
+}
+
+/* Search row */
+.search-row {
+  background: #0a3f1f;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+.search-form {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 680px;
+  padding: 0 16px;
+}
+.search-form input {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: none;
+  outline: none;
+}
+.search-form button {
+  background: var(--gold);
+  color: #1b1b1b;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  background: var(--deep-green-2);
+  display: grid;
+  grid-template-rows: auto auto;
+  align-items: end;
+}
+.hero-art {
+  min-height: 220px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+    url("https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1600&auto=format&fit=crop")
+      center/cover no-repeat;
+}
+.logo {
+  width: 100%;
+  height: 100%;
+  background: url("https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1600&auto=format&fit=crop")
+    center/cover no-repeat;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0 14px;
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 0, 0.55);
+  opacity: 0.6;
+}
+.dot.active {
+  background: #fff200;
+  opacity: 1;
+}
+
+/* Welcome panel */
+.welcome {
+  background: linear-gradient(#0a3f1f, #0a3f1f) padding-box,
+    linear-gradient(transparent, transparent) border-box;
+  padding: 16px 0 0;
+}
+.welcome-card {
+  max-width: 1040px;
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.9)
+  );
+  border-radius: 4px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  align-items: center;
+  border-top: 6px solid var(--gold);
+}
+.welcome-media {
+  width: 120px;
+  height: 120px;
+  margin: 16px;
+  border-radius: 6px;
+  background: url("https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=400&auto=format&fit=crop")
+    center/cover no-repeat;
+  border: 1px solid #e5e7eb;
+}
+.welcome-copy {
+  padding: 14px 16px 18px 0;
+}
+.welcome-copy h2 {
+  margin: 6px 0 6px;
+  font-family: Nunito, Inter, sans-serif;
+  font-weight: 800;
+  color: #2d2d2d;
+}
+.welcome-copy p {
+  margin: 0 0 10px;
+  color: #4b5563;
+}
+.btn {
+  display: inline-block;
+  background: var(--emerald);
+  color: white;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 18px;
+  font-weight: 700;
+}
+
+/* Partners row */
+.partners {
+  max-width: 1040px;
+  margin: 18px auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+  align-items: center;
+}
+.partners .logo {
+  height: 60px;
+  background: linear-gradient(180deg, #fff, #f3f4f6);
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+}
+.partners .logo img {
+  max-height: 36px;
+  width: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+}
+
+/* Bottom orange strip */
+.bottom-strip {
+  background: #f59e0b;
+  color: #fff;
+}
+.bottom-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+
+/* Responsiveness */
+@media (max-width: 900px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .welcome-card {
+    grid-template-columns: 1fr;
+  }
+  .welcome-media {
+    margin: 16px 16px 0;
+  }
+  .partners {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
