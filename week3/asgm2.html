@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management System</title>
+    <style>
+      #add-student-form-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 300px;
+        gap: 10px;
+      }
+      input {
+        display: inline-block;
+      }
+      #update-student-button {
+        display: none;
+      }
+
+      /* Table styling */
+      #student-list-table {
+        width: 100%;
+        min-width: 800px;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border: 2px solid #333;
+      }
+
+      #student-list-table th,
+      #student-list-table td {
+        border: 1px solid #333;
+        padding: 12px 8px;
+        text-align: left;
+      }
+
+      #student-list-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+        border-bottom: 2px solid #333;
+      }
+
+      #student-list-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      #student-list-table tbody tr:hover {
+        background-color: #e8f4f8;
+      }
+
+      #student-list-container {
+        overflow-x: auto;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Student Management System</h1>
+    <div id="container">
+      <div id="add-student-form-container">
+        <h2>Thêm sinh viên</h2>
+        <form id="add-student-form" onsubmit="handleFormSubmit(event)">
+          <div id="name-container">
+            <label for="name">Tên</label>
+            <input type="text" id="name" placeholder="Tên" required />
+          </div>
+
+          <div id="birthday-container">
+            <label for="birthday">Ngày sinh</label>
+            <input id="birthday" placeholder="Ngày sinh" type="date" required />
+          </div>
+
+          <div id="gender-container">
+            <label for="gender">Giới tính</label>
+            <input type="radio" id="male" name="gender" value="male" required />
+            <label for="male">Nam</label>
+            <input
+              type="radio"
+              id="female"
+              name="gender"
+              value="female"
+              required
+            />
+            <label for="female">Nữ</label>
+          </div>
+
+          <div id="address-container">
+            <label for="address">Quê quán</label>
+            <input type="text" id="address" placeholder="Quê quán" required />
+          </div>
+          <button id="add-student-button" type="submit">Thêm sinh viên</button>
+          <button id="update-student-button" type="submit">
+            Cập nhật sinh viên
+          </button>
+          <button
+            id="cancel-update-button"
+            type="button"
+            onclick="cancelUpdate()"
+            style="display: none"
+          >
+            Hủy
+          </button>
+        </form>
+      </div>
+      <div id="student-list">
+        <h2>Danh sách sinh viên</h2>
+
+        <div id="student-list-container">
+          <table id="student-list-table">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Quê quán</th>
+                <th>Xóa</th>
+                <th>Sửa</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const students = [];
+    const studentListTable = document.getElementById("student-list-table");
+    let activeIndex = -1;
+
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      if (activeIndex === -1) {
+        addStudent();
+      } else {
+        updateStudent(activeIndex);
+      }
+    }
+
+    function addStudent() {
+      const name = document.getElementById("name").value;
+      const birthday = document.getElementById("birthday").value;
+      const gender = document.getElementById("male").checked
+        ? "Nam"
+        : document.getElementById("female").checked
+        ? "Nữ"
+        : "";
+      const address = document.getElementById("address").value;
+      students.push({ name, birthday, gender, address });
+      clearForm();
+      renderStudentList();
+    }
+
+    function deleteStudent(index) {
+      students.splice(index, 1);
+      renderStudentList();
+      if (activeIndex === index) {
+        cancelUpdate();
+      } else if (activeIndex > index) {
+        activeIndex--;
+      }
+    }
+
+    function onUpdateStudent(index) {
+      const student = students[index];
+      document.getElementById("name").value = student.name;
+      document.getElementById("birthday").value = student.birthday;
+
+      // Cài đặt giới tính
+      if (student.gender === "Nam") {
+        document.getElementById("male").checked = true;
+      } else if (student.gender === "Nữ") {
+        document.getElementById("female").checked = true;
+      }
+
+      document.getElementById("address").value = student.address;
+      activeIndex = index;
+
+      // Ẩn nút thêm, hiện nút cập nhật và hủy
+      document.getElementById("add-student-button").style.display = "none";
+      document.getElementById("update-student-button").style.display =
+        "inline-block";
+      document.getElementById("cancel-update-button").style.display =
+        "inline-block";
+
+      // Thay đổi tiêu đề form
+      document.querySelector("#add-student-form-container h2").textContent =
+        "Cập nhật sinh viên";
+    }
+
+    function updateStudent(index) {
+      if (index === -1) return;
+
+      const student = students[index];
+      student.name = document.getElementById("name").value;
+      student.birthday = document.getElementById("birthday").value;
+      student.gender = document.getElementById("male").checked
+        ? "Nam"
+        : document.getElementById("female").checked
+        ? "Nữ"
+        : "";
+      student.address = document.getElementById("address").value;
+
+      cancelUpdate();
+      renderStudentList();
+    }
+
+    function cancelUpdate() {
+      activeIndex = -1;
+      clearForm();
+
+      // Hiện nút thêm, ẩn nút cập nhật và hủy
+      document.getElementById("add-student-button").style.display =
+        "inline-block";
+      document.getElementById("update-student-button").style.display = "none";
+      document.getElementById("cancel-update-button").style.display = "none";
+
+      // Khôi phục tiêu đề form
+      document.querySelector("#add-student-form-container h2").textContent =
+        "Thêm sinh viên";
+    }
+
+    function clearForm() {
+      document.getElementById("name").value = "";
+      document.getElementById("birthday").value = "";
+      document.getElementById("male").checked = false;
+      document.getElementById("female").checked = false;
+      document.getElementById("address").value = "";
+    }
+
+    function renderStudentList() {
+      studentListTable.querySelector("tbody").innerHTML = "";
+      students.forEach((student, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${student.name}</td>  
+          <td>${student.birthday}</td>
+          <td>${student.gender}</td>
+          <td>${student.address}</td>
+          <td><button onclick="deleteStudent(${index})">Xóa</button></td>
+          <td><button onclick="onUpdateStudent(${index})">Sửa</button></td>
+        `;
+        studentListTable.querySelector("tbody").appendChild(row);
+      });
+    }
+  </script>
+</html>

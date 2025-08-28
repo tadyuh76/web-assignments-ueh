@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment 3</title>
+  </head>
+  <body>
+    <div id="container">
+      <p id="sum">0</p>
+    </div>
+  </body>
+
+  <script>
+    const numberOfButtons = 10;
+    const container = document.getElementById("container");
+    for (let i = 1; i <= numberOfButtons; i++) {
+      const button = document.createElement("button");
+      button.id = i;
+      button.innerHTML = i;
+      button.addEventListener("click", () => addToSum(i));
+
+      const randR = Math.floor(Math.random() * 256);
+      const randG = Math.floor(Math.random() * 256);
+      const randB = Math.floor(Math.random() * 256);
+      button.style.backgroundColor = `rgb(${randR}, ${randG}, ${randB})`;
+
+      container.appendChild(button);
+    }
+
+    let sum = 0;
+    function addToSum(number) {
+      sum += number;
+      document.getElementById("sum").innerText = sum;
+    }
+  </script>
+</html>

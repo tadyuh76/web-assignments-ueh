@@ -4,6 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MPOB — Layout Clone</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,69 +20,105 @@
     <link rel="stylesheet" href="./asgm2.css" />
   </head>
   <body>
-    <div class="app-shell">
+    <div class="app-shell d-flex flex-column min-vh-100">
       <!-- Brand strip -->
       <header class="brand-strip">
-        <div class="brand-inner">
-          <div class="brand-left">
-            <div class="mpob-mark" aria-hidden="true"></div>
-            <div class="brand-text">
-              <div class="sub">Official Portal Of</div>
-              <div class="title">Malaysian Palm Oil Board</div>
+        <div class="container py-2">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+              <div class="mpob-mark me-3" aria-hidden="true"></div>
+              <div class="brand-text">
+                <div class="sub small text-muted">Official Portal Of</div>
+                <div class="title fw-bold">Malaysian Palm Oil Board</div>
+              </div>
             </div>
+            <div class="gov-mark" aria-label="Gov crest"></div>
           </div>
-          <div class="gov-mark" aria-label="Gov crest"></div>
         </div>
       </header>
 
       <!-- Primary green menu -->
       <nav class="primary-menu">
-        <ul class="menu-grid">
-          <li>
-            <a href="#"
-              ><span class="ico" aria-hidden="true">🏠</span
-              ><span>Corporate Info</span></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><span class="ico" aria-hidden="true">📝</span
-              ><span>News</span></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><span class="ico" aria-hidden="true">📄</span
-              ><span>Prices</span></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><span class="ico" aria-hidden="true">📈</span
-              ><span>MpobTV</span></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><span class="ico" aria-hidden="true">🎥</span
-              ><span>Intranet</span></a
-            >
-          </li>
-          <li>
-            <a href="#"
-              ><span class="ico" aria-hidden="true">👤</span
-              ><span>More</span></a
-            >
-          </li>
-        </ul>
+        <div class="container py-2">
+          <div class="row g-2">
+            <div class="col-6 col-md-4 col-lg-2">
+              <a
+                href="#"
+                class="btn w-100 d-flex align-items-center justify-content-center gap-2 text-white fw-bold"
+              >
+                <span class="ico" aria-hidden="true">🏠</span>
+                <span>Corporate Info</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <a
+                href="#"
+                class="btn w-100 d-flex align-items-center justify-content-center gap-2 text-white fw-bold"
+              >
+                <span class="ico" aria-hidden="true">📝</span>
+                <span>News</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <a
+                href="#"
+                class="btn w-100 d-flex align-items-center justify-content-center gap-2 text-white fw-bold"
+              >
+                <span class="ico" aria-hidden="true">📄</span>
+                <span>Prices</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <a
+                href="#"
+                class="btn w-100 d-flex align-items-center justify-content-center gap-2 text-white fw-bold"
+              >
+                <span class="ico" aria-hidden="true">📈</span>
+                <span>MpobTV</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <a
+                href="#"
+                class="btn w-100 d-flex align-items-center justify-content-center gap-2 text-white fw-bold"
+              >
+                <span class="ico" aria-hidden="true">🎥</span>
+                <span>Intranet</span>
+              </a>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2">
+              <a
+                href="#"
+                class="btn w-100 d-flex align-items-center justify-content-center gap-2 text-white fw-bold"
+              >
+                <span class="ico" aria-hidden="true">👤</span>
+                <span>More</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </nav>
 
       <!-- Search -->
-      <div class="search-row">
-        <form class="search-form" action="#">
-          <input type="search" placeholder="Search" aria-label="Search" />
-          <button type="submit">GO</button>
-        </form>
+      <div class="search-row py-2">
+        <div class="container">
+          <form class="d-flex justify-content-center" action="#">
+            <div class="input-group" style="max-width: 680px">
+              <input
+                type="search"
+                class="form-control rounded-pill rounded-end"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                class="btn btn-warning rounded-pill rounded-start fw-bold"
+                type="submit"
+              >
+                GO
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
 
       <!-- Hero slider placeholder -->
@@ -85,52 +128,115 @@
           role="img"
           aria-label="Flower banner placeholder"
         ></div>
-        <div class="dots" aria-hidden="true">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+        <div class="d-flex justify-content-center py-2" aria-hidden="true">
+          <div class="d-flex gap-2">
+            <span class="dot active rounded-circle"></span>
+            <span class="dot rounded-circle"></span>
+            <span class="dot rounded-circle"></span>
+            <span class="dot rounded-circle"></span>
+          </div>
         </div>
       </section>
 
       <!-- Welcome panel -->
-      <section class="welcome">
-        <div class="welcome-card">
-          <div class="welcome-media" aria-hidden="true"></div>
-          <div class="welcome-copy">
-            <h2>Welcome to the MPOB</h2>
-            <p>
-              The oil palm industry forms the economic backbone of Malaysia and
-              continues to face new challenges in the face of globalization.
-            </p>
-            <a href="#" class="btn">Read More</a>
+      <section class="welcome p-4">
+        <div class="container">
+          <div class="card shadow welcome-card">
+            <div class="card-body">
+              <div class="row align-items-center">
+                <div class="col-md-3 text-center">
+                  <div
+                    class="welcome-media rounded mb-3 mb-md-0"
+                    aria-hidden="true"
+                  ></div>
+                </div>
+                <div class="col-md-9">
+                  <h2 class="card-title h3 fw-bold">Welcome to the MPOB</h2>
+                  <p class="card-text text-muted mb-3">
+                    The oil palm industry forms the economic backbone of
+                    Malaysia and continues to face new challenges in the face of
+                    globalization.
+                  </p>
+                  <a href="#" class="btn btn-success rounded-pill fw-bold"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Partner logos row -->
-      <section class="partners">
-        <div class="logo">
-          <img src="https://placehold.co/140x40?text=Logo+1" alt="Partner 1" />
-        </div>
-        <div class="logo">
-          <img src="https://placehold.co/140x40?text=Logo+2" alt="Partner 2" />
-        </div>
-        <div class="logo">
-          <img src="https://placehold.co/140x40?text=Logo+3" alt="Partner 3" />
-        </div>
-        <div class="logo">
-          <img src="https://placehold.co/140x40?text=Logo+4" alt="Partner 4" />
+      <section class="partners py-4">
+        <div class="container">
+          <div class="row g-3 justify-content-center">
+            <div class="col-6 col-md-3">
+              <div
+                class="card h-100 d-flex align-items-center justify-content-center p-3"
+              >
+                <img
+                  src="https://placehold.co/140x40?text=Logo+1"
+                  alt="Partner 1"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div
+                class="card h-100 d-flex align-items-center justify-content-center p-3"
+              >
+                <img
+                  src="https://placehold.co/140x40?text=Logo+2"
+                  alt="Partner 2"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div
+                class="card h-100 d-flex align-items-center justify-content-center p-3"
+              >
+                <img
+                  src="https://placehold.co/140x40?text=Logo+3"
+                  alt="Partner 3"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-6 col-md-3">
+              <div
+                class="card h-100 d-flex align-items-center justify-content-center p-3"
+              >
+                <img
+                  src="https://placehold.co/140x40?text=Logo+4"
+                  alt="Partner 4"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Bottom strip -->
-      <footer class="bottom-strip">
-        <div class="bottom-inner">
-          <div>Desktop Version</div>
-          <div>© 2013 Malaysian Palm Oil Board</div>
+      <footer class="bottom-strip mt-auto">
+        <div class="container py-3">
+          <div
+            class="d-flex justify-content-between align-items-center text-white fw-bold"
+          >
+            <div>Desktop Version</div>
+            <div>© 2013 Malaysian Palm Oil Board</div>
+          </div>
         </div>
       </footer>
     </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
